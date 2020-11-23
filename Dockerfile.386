@@ -1,0 +1,14 @@
+FROM mattiasegly/base-image:386
+
+ENV NODE_ENV="production"
+
+ARG SOURCE=https://unofficial-builds.nodejs.org/download/release
+ARG RELEASE=15.2.1
+ARG ARCH=x86
+
+RUN curl -L $SOURCE/v$RELEASE/node-v$RELEASE-linux-$ARCH.tar.gz -o node.tar.gz && \
+	tar -xzf node.tar.gz -C /usr/local --strip-components=1 && \
+	rm node.tar.gz && \
+	npm config set unsafe-perm true && \
+	npm config set user root && \
+	node --version
