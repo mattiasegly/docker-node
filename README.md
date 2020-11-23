@@ -1,2 +1,2 @@
 # docker-node
-Custom Debian Docker base images for personal projects.
+Custom Debian Docker Node.js base images for personal projects.
