@@ -6,6 +6,14 @@ ARG SOURCE=https://nodejs.org/download/release
 ARG RELEASE=15.2.1
 ARG ARCH=x64
 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+	libatomic1 \
+	libbrotli1 \
+	libc-ares2 \
+	libicu63 \
+	libuv1 \
+&& rm -rf /var/lib/apt/lists/*
+
 RUN curl -L $SOURCE/v$RELEASE/node-v$RELEASE-linux-$ARCH.tar.gz -o node.tar.gz && \
 	tar -xzf node.tar.gz -C /usr/local --strip-components=1 && \
 	rm node.tar.gz && \
