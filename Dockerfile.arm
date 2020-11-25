@@ -1,4 +1,4 @@
-FROM mattiasegly/base-image:arm
+FROM mattiasegly/base-image:buster-arm
 RUN [ "cross-build-start" ]
 
 ENV NODE_ENV="production"
