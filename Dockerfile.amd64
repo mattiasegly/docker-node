@@ -3,7 +3,7 @@ FROM mattiasegly/base-image:amd64
 ENV NODE_ENV="production"
 
 ARG SOURCE=https://nodejs.org/download/release
-ARG RELEASE=15.2.1
+ARG RELEASE=15.3.0
 ARG ARCH=x64
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
