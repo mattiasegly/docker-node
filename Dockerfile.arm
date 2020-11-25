@@ -1,26 +1,13 @@
-FROM mattiasegly/base-image:arm
+FROM mattiasegly/base-image:bullseye-arm
 RUN [ "cross-build-start" ]
 
 ENV NODE_ENV="production"
 
-ARG SOURCE=https://unofficial-builds.nodejs.org/download/release
-ARG RELEASE=15.3.0
-ARG ARCH=armv6l
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-	libatomic1 \
-	libbrotli1 \
-	libc-ares2 \
-	libicu63 \
-	libuv1 \
-&& rm -rf /var/lib/apt/lists/*
-
-RUN curl -L $SOURCE/v$RELEASE/node-v$RELEASE-linux-$ARCH.tar.gz -o node.tar.gz && \
-	tar -xzf node.tar.gz -C /usr/local --strip-components=1 && \
-	rm node.tar.gz && \
-	npm config set unsafe-perm true && \
-	npm config set user root && \
-	node --version && \
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.1/install.sh | bash && \
+	export NVM_DIR="$HOME/.nvm" && \
+	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
+	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" && \
+	nvm install node && \
 	npm version
 
 RUN [ "cross-build-end" ]
