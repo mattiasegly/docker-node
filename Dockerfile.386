@@ -21,7 +21,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 #	libuv1 \
 && rm -rf /var/lib/apt/lists/*
 
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.1/install.sh | bash && \
+RUN mkdir /usr/local/nvm && \
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.1/install.sh | bash && \
 #	export NVM_DIR="$HOME/.nvm" && \
 #	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
 #	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" && \
