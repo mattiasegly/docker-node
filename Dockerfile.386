@@ -1,7 +1,21 @@
 FROM mattiasegly/base-image:bullseye-386
 
 ENV NODE_ENV="production"
-ENV NVM_NODEJS_ORG_MIRROR=https://unofficial-builds.nodejs.org/download/release/
+ENV NVM_NODEJS_ORG_MIRROR=https://unofficial-builds.nodejs.org/download/release
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+	libatomic1 \
+	libbrotli1 \
+	libc-ares2 \
+	libc6 \
+	libgcc-s1 \
+	libicu67 \
+	libnghttp2-14 \
+	libssl1.1 \
+	libstdc++6 \
+	zlib1g \
+#	libuv1 \
+&& rm -rf /var/lib/apt/lists/*
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.1/install.sh | bash && \
 	export NVM_DIR="$HOME/.nvm" && \
