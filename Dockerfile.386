@@ -1,7 +1,10 @@
 FROM mattiasegly/base-image:bullseye-386
 
-ENV NODE_ENV="production"
-ENV NVM_NODEJS_ORG_MIRROR=https://unofficial-builds.nodejs.org/download/release
+ARG NVM_NODEJS_ORG_MIRROR=https://unofficial-builds.nodejs.org/download/release
+
+ENV NVM_DIR=/usr/local/nvm
+ENV PATH=$NVM_DIR:$PATH
+ENV NODE_ENV=production
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 #	nodejs \
@@ -19,8 +22,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 && rm -rf /var/lib/apt/lists/*
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.1/install.sh | bash && \
-	export NVM_DIR="$HOME/.nvm" && \
-	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
-	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" && \
+#	export NVM_DIR="$HOME/.nvm" && \
+#	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
+#	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" && \
 	nvm install node && \
 	npm version
