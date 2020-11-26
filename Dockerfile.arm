@@ -3,7 +3,7 @@ RUN [ "cross-build-start" ]
 
 ARG NVM_NODEJS_ORG_MIRROR=https://unofficial-builds.nodejs.org/download/release
 
-ENV NVM_DIR=/usr/local/nvm
+#ENV NVM_DIR=/usr/local/nvm
 ENV NODE_ENV=production
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
