@@ -3,25 +3,12 @@ FROM mattiasegly/base-image:bullseye-amd64
 ARG NVM_NODEJS_ORG_MIRROR=https://nodejs.org/download/release
 
 ENV NVM_DIR=/usr/local/nvm
-ENV PATH=$NVM_DIR:$PATH
 ENV NODE_ENV=production
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-#	nodejs \
-#	libnode-dev \
-#	libnode72 \
 	libatomic1 \
-#	libbrotli1 \
-#	libc-ares2 \
-#	libgcc-s1 \
-#	libicu67 \
-#	libnghttp2-14 \
-#	libssl1.1 \
-#	zlib1g \
-#	libuv1 \
 && rm -rf /var/lib/apt/lists/*
 
-SHELL ["/bin/bash", "--login", "-c"]
 RUN mkdir /usr/local/nvm && \
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.1/install.sh | bash && \
 	export NVM_DIR="$HOME/.nvm" && \
