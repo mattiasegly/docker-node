@@ -1,6 +1,7 @@
 FROM mattiasegly/base-image:bullseye-amd64
 
 ENV NODE_ENV="production"
+ENV NVM_NODEJS_ORG_MIRROR=https://nodejs.org/download/release/
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.1/install.sh | bash && \
 	export NVM_DIR="$HOME/.nvm" && \

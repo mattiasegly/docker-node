@@ -2,12 +2,7 @@ FROM mattiasegly/base-image:bullseye-arm
 RUN [ "cross-build-start" ]
 
 ENV NODE_ENV="production"
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-	python3 \
-#	build-essential \
-&& rm -rf /var/lib/apt/lists/* \
-&& update-alternatives --install /usr/bin/python python /usr/bin/python3 1
+ENV NVM_NODEJS_ORG_MIRROR=https://unofficial-builds.nodejs.org/download/release/
 
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.1/install.sh | bash && \
 	export NVM_DIR="$HOME/.nvm" && \
