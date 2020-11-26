@@ -19,5 +19,4 @@ RUN curl -L $SOURCE/v$RELEASE/node-v$RELEASE-linux-$ARCH.tar.gz -o node.tar.gz &
 	rm node.tar.gz && \
 	npm config set unsafe-perm true && \
 	npm config set user root && \
-	node --version && \
 	npm version
