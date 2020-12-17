@@ -1,22 +1,21 @@
 FROM mattiasegly/base-image:bullseye-arm
 RUN [ "cross-build-start" ]
 
-ARG NVM_NODEJS_ORG_MIRROR=https://unofficial-builds.nodejs.org/download/release
+ENV NODE_ENV="production"
 
-ENV NVM_DIR=/usr/local/nvm
-ENV NODE_ENV=production
+ARG SOURCE=https://unofficial-builds.nodejs.org/download/release
+ARG RELEASE=15.4.0
+ARG ARCH=armv6l
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 	libatomic1 \
 && rm -rf /var/lib/apt/lists/*
 
-SHELL ["/bin/bash", "--login", "-c"]
-RUN mkdir /usr/local/nvm && \
-	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.1/install.sh | bash && \
-	export NVM_DIR="/usr/local/nvm" && \
-	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
-	[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" && \
-	nvm install node && \
+RUN curl -L $SOURCE/v$RELEASE/node-v$RELEASE-linux-$ARCH.tar.gz -o node.tar.gz && \
+	tar -xzf node.tar.gz -C /usr/local --strip-components=1 && \
+	rm node.tar.gz && \
+	npm config set unsafe-perm true && \
+	npm config set user root && \
 	npm version
 
 RUN [ "cross-build-end" ]
