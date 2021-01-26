@@ -3,7 +3,7 @@ FROM mattiasegly/base-image:buster-amd64
 ENV NODE_ENV="production"
 
 ARG SOURCE=https://nodejs.org/download/release
-ARG RELEASE=15.4.0
+ARG RELEASE=15.6.0
 ARG ARCH=x64
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
