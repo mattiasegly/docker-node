@@ -4,7 +4,7 @@ RUN [ "cross-build-start" ]
 ENV NODE_ENV="production"
 
 ARG SOURCE=https://unofficial-builds.nodejs.org/download/release
-ARG RELEASE=15.12.0
+ARG RELEASE=15.13.0
 ARG ARCH=armv6l
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
