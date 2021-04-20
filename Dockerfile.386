@@ -3,7 +3,7 @@ FROM mattiasegly/base-image:bullseye-386
 ENV NODE_ENV="production"
 
 ARG SOURCE=https://unofficial-builds.nodejs.org/download/release
-ARG RELEASE=15.13.0
+ARG RELEASE=15.14.0
 ARG ARCH=x86
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
