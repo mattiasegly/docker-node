@@ -3,7 +3,7 @@ FROM mattiasegly/base-image:bullseye-amd64
 ENV NODE_ENV="production"
 
 ARG SOURCE=https://nodejs.org/download/release
-ARG RELEASE=16.2.0
+ARG RELEASE=16.3.0
 ARG ARCH=x64
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
